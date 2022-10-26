@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:market/models/categorys_model.dart';
+import 'package:market/repository/repository.dart';
 import 'package:market/screens/home_screen.dart';
 import 'package:market/widgets/transition.dart';
 
@@ -8,9 +12,48 @@ class SearchValue extends StatefulWidget {
 }
 
 class _SearchValueState extends State<SearchValue> {
+  TextEditingController textSearchController = TextEditingController();
+  final _focusInput = FocusNode();
+  List<CategoryModel> dataCategorys = [];
+  RepositoryFetch fecthApi = RepositoryFetch();
+
+  List<dynamic> getCategoryList() {
+    List outputList =
+        dataCategorys.where((o) => o.nombre == textSearchController).toList();
+    print("outputList ${outputList}");
+    return outputList;
+  }
+
+  void _onFocusChange() {
+    debugPrint("Focus: ${_focusInput.hasFocus.toString()}");
+  }
+
   @override
   void initState() {
+    _focusInput.addListener(() {
+      _onFocusChange();
+    });
     super.initState();
+
+    fecthApi.fetchData().then((result) {
+      print("getCategoryList ${getCategoryList}");
+      for (dynamic map in result) {
+        setState(() {
+          dataCategorys
+              .add(CategoryModel.fromJson(json.decode(json.encode(map))));
+        });
+      }
+    });
+    if (dataCategorys != null && dataCategorys != []) {
+      getCategoryList();
+    }
+  }
+
+  @override
+  void dispose() {
+    _focusInput.dispose();
+    _focusInput.removeListener(_onFocusChange);
+    super.dispose();
   }
 
   @override
@@ -52,11 +95,25 @@ class _SearchValueState extends State<SearchValue> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
-                      "Buscar",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 190, 190, 190),
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        cursorColor: Colors.blueGrey,
+                        controller: textSearchController,
+                        focusNode: _focusInput,
+                        onChanged: (value) => setState(() {
+                          print(
+                              "categoria filter ${dataCategorys.where((oldValue) => textSearchController.toString() == (oldValue.nombre.toString()))}");
+                        }),
+                        decoration: InputDecoration(
+                          hintText: "Escribe ...",
+                          hintStyle: TextStyle(
+                              fontFamily: 'regular',
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.035),
+                          border: InputBorder.none,
+                          // border: OutlineInputBorder(),
+                        ),
                       ),
                     ),
                     Padding(

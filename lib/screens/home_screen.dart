@@ -42,9 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
     double typePercentage = double.parse(convertPercentage);
     double calculateOne = (typeValue * typePercentage);
     double calculateTwo = (typeValue - calculateOne);
-    print("lo que llega ${typeValue} ${typePercentage}");
-    print("calcular uno ${calculateOne}");
-    print("calcular dos ${calculateOne}");
     return calculateTwo;
   }
 
