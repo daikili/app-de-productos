@@ -20,6 +20,7 @@ class CategoryModel {
   String likes;
   String megusta;
   String galeria;
+  String imagen;
 
   CategoryModel({
     required this.categoria,
@@ -43,31 +44,33 @@ class CategoryModel {
     required this.likes,
     required this.megusta,
     required this.galeria,
+    required this.imagen,
   });
 
   factory CategoryModel.fromJson(Map<String, dynamic> parsedJson) {
     return CategoryModel(
-      categoria: parsedJson["categoria"],
-      cliente: parsedJson["cliente"],
-      colores: parsedJson["colores"],
-      descripcion: parsedJson["descripcion"],
-      disponible: parsedJson["disponible"],
-      estado: parsedJson["estado"],
-      fechaCreacion: parsedJson['fechaCreacion'],
-      id: parsedJson["id"],
-      nombre: parsedJson['nombre'],
-      precio: parsedJson['precio'],
-      tallas: parsedJson['tallas'],
-      video: parsedJson['video'],
-      descripcionPromo: parsedJson['descripcionPromo'],
-      idPromocion: parsedJson['idPromocion'],
-      valorPromo: parsedJson['valorPromo'],
-      idProductoPromo: parsedJson['idProductoPromo'],
-      fechaPromo: parsedJson['fechaPromo'],
-      estadoPromo: parsedJson['estadoPromo'],
-      likes: parsedJson['likes'],
-      megusta: parsedJson['megusta'],
-      galeria: parsedJson['galeria'],
+      categoria: parsedJson["categoria"] ?? "",
+      cliente: parsedJson["cliente"] ?? "",
+      colores: parsedJson["colores"] ?? "",
+      descripcion: parsedJson["descripcion"] ?? "",
+      disponible: parsedJson["disponible"] ?? "",
+      estado: parsedJson["estado"] ?? "",
+      fechaCreacion: parsedJson['fecha_creacion'] ?? "",
+      id: parsedJson["id"] ?? "",
+      nombre: parsedJson['nombre'] ?? "",
+      precio: parsedJson['precio'] ?? "",
+      tallas: parsedJson['tallas'] ?? "",
+      video: parsedJson['video'] ?? "",
+      descripcionPromo: parsedJson['descripcion_promo'] ?? "",
+      idPromocion: parsedJson['id_promocion'] ?? "",
+      valorPromo: parsedJson['valor_promo'] ?? "",
+      idProductoPromo: parsedJson['id_producto_promo'] ?? "",
+      fechaPromo: parsedJson['fecha_promo'] ?? "",
+      estadoPromo: parsedJson['estado_promo'] ?? "",
+      likes: parsedJson['likes'] ?? "",
+      megusta: parsedJson['megusta'] ?? "",
+      galeria: parsedJson['galeria'] ?? "",
+      imagen: parsedJson['imagen'] ?? "",
     );
   }
   // String get getCategoria => categoria;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:market/src/ui/home_screen.dart';
+import 'package:market/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Prueba',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
