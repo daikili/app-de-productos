@@ -5,12 +5,13 @@ import 'package:market/screens/details_product.dart';
 import 'package:market/utils/calculations.dart';
 import 'package:provider/provider.dart';
 
+//**------------------match finder------------------------------- **/
 class CustomSearchDelegate extends SearchDelegate {
   List<CategoryModel> filteredProducts = [];
 
+  //filter by name property
   void fetchFilter(context, queryData, redirect) {
     final postModel = Provider.of<DataClass>(context, listen: false);
-    print("ver fecthFilter");
     if (postModel.post != null) {
       for (var i = 0; i < postModel.post!.length; i++) {
         if (postModel.post![i].nombre.toString().contains(queryData)) {
@@ -18,6 +19,7 @@ class CustomSearchDelegate extends SearchDelegate {
         }
       }
     }
+    //if redirect is true go to start
     if (filteredProducts.length != 0 && redirect == true) {
       Navigator.push(
           context,
@@ -32,12 +34,10 @@ class CustomSearchDelegate extends SearchDelegate {
                         filteredProducts[0].valorPromo),
                   ))));
     }
-    // print("postModel fecthFilter ${filteredProducts}");
   }
 
   @override
   List<Widget> buildActions(BuildContext context) {
-    // TODO: implement buildActions
     return [
       IconButton(
         icon: Icon(Icons.clear),
@@ -50,9 +50,8 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildLeading(BuildContext context) {
-    // TODO: implement buildLeading
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
       onPressed: () {
         close(context, null);
       },
@@ -61,7 +60,9 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
+    //provider to save the history
     final saveWords = Provider.of<SaveSearchedWordsProvider>(context);
+    //if there is no search it shows the history
 
     if (query.trim().length == 0) {
       return saveWords.saveSearchedWords != null &&
@@ -76,20 +77,11 @@ class CustomSearchDelegate extends SearchDelegate {
             }).toList())
           : Center(child: Text("No hay datos"));
     }
-
+    //I save my search word in the provider
     saveWords.saveSearchedWords.add(query);
+    //filter for the query
     fetchFilter(context, query, false);
-    // if (saveWords.saveSearchedWords.length == 0) {
-    //   for (var i = 0; i < saveWords.saveSearchedWords.length; i++) {
-    //     if (saveWords.saveSearchedWords[i].toString().contains(query)) {
-    //       saveWords.saveSearchedWords[i].remove(query);
-    //     }
-    //   }
-    // }
 
-    // print("query ${query} and ${saveWords.saveSearchedWords}");
-
-    // query!
     return filteredProducts != null &&
             filteredProducts != [] &&
             filteredProducts.length != 0
@@ -112,13 +104,13 @@ class CustomSearchDelegate extends SearchDelegate {
                 },
                 child: Card(child: ListTile(title: Text(item.nombre))));
           }).toList())
-        : Center(child: Text("No hay datos"));
+        : const Center(child: Text("No hay datos"));
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
     final saveWords = Provider.of<SaveSearchedWordsProvider>(context);
-    // TODO: implement buildSuggestions
+    //If there is no data I show my history and if the search does not match it shows "No data"
     return saveWords.saveSearchedWords != null &&
             saveWords.saveSearchedWords != [] &&
             saveWords.saveSearchedWords.length != 0
@@ -132,6 +124,6 @@ class CustomSearchDelegate extends SearchDelegate {
                     }, // Handle your onTap here.
                 child: Card(child: ListTile(title: Text(item))));
           }).toList())
-        : Center(child: Text("No hay datos"));
+        : const Center(child: Text("No hay datos"));
   }
 }

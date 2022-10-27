@@ -15,6 +15,7 @@ class CategoryProvider extends ChangeNotifier {
   }
 }
 
+//provider for model CategoryModel
 class DataClass extends ChangeNotifier {
   List<CategoryModel>? post;
   bool loading = false;
@@ -23,7 +24,6 @@ class DataClass extends ChangeNotifier {
     loading = true;
     post = (await fetch.getSinglePostData());
     loading = false;
-
     notifyListeners();
   }
 }
@@ -34,7 +34,7 @@ class SaveSearchedWordsProvider extends ChangeNotifier {
 
 //Lista de palabras buscadas
   set saveSearchedWords(List<dynamic> x) {
-    print("valor recibido _saveSearchedWords ${x}");
+    // print("valor recibido _saveSearchedWords ${x}");
     _saveSearchedWords.add(x);
     notifyListeners();
   }

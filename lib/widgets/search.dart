@@ -1,12 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:market/screens/search_value.dart';
 import 'package:market/search/search_delegate.dart';
-import 'package:market/widgets/transition.dart';
-import '../models/categorys_model.dart';
-import '../providers/provider_notifier.dart';
-import 'package:http/http.dart' as http;
 
 String endpointApi =
     "https://api.bazzaio.com/v5/listados/listar_productos_tienda/590/0";

@@ -28,14 +28,13 @@ class _DetailsProductState extends State<DetailsProduct> {
   bool favorite = false;
   @override
   Widget build(BuildContext context) {
-    print("llego ${widget.name}");
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 250, 250, 250),
           elevation: 0,
           automaticallyImplyLeading: false,
           leading: IconButton(
-              icon: Icon(Icons.arrow_back_rounded),
+              icon: const Icon(Icons.arrow_back_rounded),
               onPressed: () => {
                     print("go back"),
                     if (widget.redirect == false)
@@ -48,10 +47,10 @@ class _DetailsProductState extends State<DetailsProduct> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    (MyBottomNavigatorBar()))),
+                                    (const MyBottomNavigatorBar()))),
                       }
                   }),
-          foregroundColor: Color.fromARGB(255, 155, 155, 155),
+          foregroundColor: const Color.fromARGB(255, 155, 155, 155),
           title: Padding(
             padding:
                 EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.12),
@@ -168,7 +167,7 @@ class _DetailsProductState extends State<DetailsProduct> {
                                                             .size
                                                             .height *
                                                         0.05),
-                                                child: Icon(
+                                                child: const Icon(
                                                   Icons.favorite_border,
                                                   color: Colors.grey,
                                                 ),
@@ -208,7 +207,7 @@ class _DetailsProductState extends State<DetailsProduct> {
                                 width: MediaQuery.of(context).size.width * 0.70,
                                 child: Text(
                                   widget.description,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black38),
                                 )),

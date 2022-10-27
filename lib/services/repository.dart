@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:market/models/categorys_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,13 +23,4 @@ class RepositoryFetch {
     }
     return result;
   }
-  // Future<CategoryModel?> fetchData() async {
-  //   print("entered");
-  //   final response = await http.get(Uri.parse(endpointApi));
-  //   if (response.statusCode == 200) {
-  //     return json.decode(response.body)["data"];
-  //   } else {
-  //     throw Exception('Failed to load post');
-  //   }
-  // }
 }
