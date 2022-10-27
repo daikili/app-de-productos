@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:market/providers/provider_notifier.dart';
 import 'package:market/screens/home_screen.dart';
+import 'package:market/widgets/bottom_navigator_bar.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: MyBottomNavigatorBar(),
     );
   }
 }

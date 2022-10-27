@@ -76,11 +76,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                       print("valor i $i");
                                       print(
                                           "valor  postModel.post?[i].nombre ${postModel.post?[i].nombre}");
+
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  (DetailsProduct(
+                                                  DetailsProduct(
+                                                    redirect: false,
                                                     name: postModel
                                                         .post![i].nombre,
                                                     image: postModel
@@ -96,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                 .precio,
                                                             postModel.post![i]
                                                                 .valorPromo),
-                                                  ))));
+                                                  )));
                                     },
                                     child: Container(
                                       padding: const EdgeInsets.all(5),
