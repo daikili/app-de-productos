@@ -10,3 +10,14 @@ class CategoryProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+class ChangeForFilterProvider extends ChangeNotifier {
+  final List<dynamic> _chageForFilter = [];
+  List<dynamic> get chageForFilter => _chageForFilter;
+
+//Lista de palabras buscadas
+  set chageForFilter(dynamic x) {
+    _chageForFilter.add(x);
+    notifyListeners();
+  }
+}

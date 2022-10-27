@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:market/models/categorys_model.dart';
-import 'package:market/repository/repository.dart';
 import 'package:market/screens/home_screen.dart';
 import 'package:market/widgets/transition.dart';
 
@@ -15,7 +14,6 @@ class _SearchValueState extends State<SearchValue> {
   TextEditingController textSearchController = TextEditingController();
   final _focusInput = FocusNode();
   List<CategoryModel> dataCategorys = [];
-  RepositoryFetch fecthApi = RepositoryFetch();
 
   List<dynamic> getCategoryList() {
     List outputList =
@@ -34,19 +32,6 @@ class _SearchValueState extends State<SearchValue> {
       _onFocusChange();
     });
     super.initState();
-
-    fecthApi.fetchData().then((result) {
-      print("getCategoryList ${getCategoryList}");
-      for (dynamic map in result) {
-        setState(() {
-          dataCategorys
-              .add(CategoryModel.fromJson(json.decode(json.encode(map))));
-        });
-      }
-    });
-    if (dataCategorys != null && dataCategorys != []) {
-      getCategoryList();
-    }
   }
 
   @override
