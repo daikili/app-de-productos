@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:market/models/categorys_model.dart';
+import 'package:market/services/repository.dart';
 
 class CategoryProvider extends ChangeNotifier {
   final List<String> _searchWords = [];
@@ -11,13 +15,27 @@ class CategoryProvider extends ChangeNotifier {
   }
 }
 
-class ChangeForFilterProvider extends ChangeNotifier {
-  final List<dynamic> _chageForFilter = [];
-  List<dynamic> get chageForFilter => _chageForFilter;
+class DataClass extends ChangeNotifier {
+  List<CategoryModel>? post;
+  bool loading = false;
+  RepositoryFetch fetch = RepositoryFetch();
+  getPostData() async {
+    loading = true;
+    post = (await fetch.getSinglePostData());
+    loading = false;
+
+    notifyListeners();
+  }
+}
+
+class SaveSearchedWordsProvider extends ChangeNotifier {
+  final List<dynamic> _saveSearchedWords = [];
+  List<dynamic> get saveSearchedWords => _saveSearchedWords;
 
 //Lista de palabras buscadas
-  set chageForFilter(dynamic x) {
-    _chageForFilter.add(x);
+  set saveSearchedWords(List<dynamic> x) {
+    print("valor recibido _saveSearchedWords ${x}");
+    _saveSearchedWords.add(x);
     notifyListeners();
   }
 }

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:market/providers/provider_notifier.dart';
 import 'package:market/screens/home_screen.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => SaveSearchedWordsProvider()),
+    ChangeNotifierProvider(create: (_) => DataClass()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

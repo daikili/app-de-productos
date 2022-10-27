@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:market/screens/search_value.dart';
+import 'package:market/search/search_delegate.dart';
 import 'package:market/widgets/transition.dart';
 import '../models/categorys_model.dart';
 import '../providers/provider_notifier.dart';
@@ -27,9 +28,7 @@ class _SearchState extends State<Search> {
 
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(CustomPageRoute(
-          child: SearchValue(),
-        ));
+        showSearch(context: context, delegate: CustomSearchDelegate());
       },
       child: Container(
         padding: const EdgeInsets.only(left: 20),
