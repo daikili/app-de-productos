@@ -1,16 +1,35 @@
 # market
 
-A new Flutter project.
+Proyecto de flutter plaza opciones Naturales
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Prueba par KUBO S.A.S
+Diana Patricia Rojas Gonzalez
+Desarrolladora frontend
 
-A few resources to get you started if this is your first Flutter project:
+Version de dart y flutter:
+* [dart]: Version 2.18.2 
+* [flutter] Version 3.3.5
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Installation
+***
+run Flutter pub get
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Libraries
+* [http]: Version ^0.13.5
+* [provider]: Version ^6.0.4
+
+
+## Description
+
+- Este proyecto se basa en una tienda virtual llamada plaza, donde itero los productos y los busco por su respectivo 
+nombre, Así como también puedo ver el detalle de cada producto. Tiene una navegación en la cual puedes acceder a
+distintos items de la apliacación. 
+
+- Utilice provider para manejar los estados y guardar el historial de busqueda
+- El respectivo modelo para iterar las cards de los productos
+- EL Search delegate de flutter , para el buscador
+- Un bottom navigation bar sencillo 
+- Y en la carpeta de utils estan todas las funciones para calcular el precio y convertir la primero palabra del buscador en mayuscula internamente.
+
