@@ -8,7 +8,8 @@ import 'package:provider/provider.dart';
 //**------------------match finder------------------------------- **/
 class CustomSearchDelegate extends SearchDelegate {
   List<CategoryModel> filteredProducts = [];
-
+  @override
+  String get searchFieldLabel => 'Buscar';
   //filter by name property
   void fetchFilter(context, queryData, redirect) {
     final postModel = Provider.of<DataClass>(context, listen: false);
@@ -40,7 +41,7 @@ class CustomSearchDelegate extends SearchDelegate {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
         onPressed: () {
           query = '';
         },
@@ -75,12 +76,12 @@ class CustomSearchDelegate extends SearchDelegate {
                       print("Container pressed"), // Handle your onTap here.
                   child: Card(child: ListTile(title: Text(item))));
             }).toList())
-          : Center(child: Text("No hay datos"));
+          : const Center(child: Text("No hay datos"));
     }
     //I save my search word in the provider
-    saveWords.saveSearchedWords.add(query);
+    saveWords.saveSearchedWords.add(ucFirst(query));
     //filter for the query
-    fetchFilter(context, query, false);
+    fetchFilter(context, ucFirst(query), false);
 
     return filteredProducts != null &&
             filteredProducts != [] &&
@@ -119,11 +120,32 @@ class CustomSearchDelegate extends SearchDelegate {
             return GestureDetector(
                 onTap: () => {
                       query = item,
-                      fetchFilter(context, item, true),
-                      print("Container pressed ${query}")
+                      fetchFilter(context, ucFirst(item), true),
+                      // print("Container pressed ${query}")
                     }, // Handle your onTap here.
                 child: Card(child: ListTile(title: Text(item))));
           }).toList())
         : const Center(child: Text("No hay datos"));
+  }
+
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    assert(context != null);
+    final ThemeData theme = Theme.of(context);
+    final ColorScheme colorScheme = theme.colorScheme;
+    assert(theme != null);
+    return theme.copyWith(
+      appBarTheme: AppBarTheme(
+        titleTextStyle: const TextStyle(color: Colors.white),
+        backgroundColor: Colors.green,
+        iconTheme: theme.primaryIconTheme
+            .copyWith(color: const Color.fromARGB(255, 255, 255, 255)),
+      ),
+      inputDecorationTheme: searchFieldDecorationTheme ??
+          InputDecorationTheme(
+            hintStyle: searchFieldStyle ?? theme.inputDecorationTheme.hintStyle,
+            border: InputBorder.none,
+          ),
+    );
   }
 }

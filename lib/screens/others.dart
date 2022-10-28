@@ -10,6 +10,8 @@ class Others extends StatefulWidget {
 class _OthersState extends State<Others> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Center(
+      child: Text(" Catálogo"),
+    );
   }
 }

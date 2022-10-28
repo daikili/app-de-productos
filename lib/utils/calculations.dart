@@ -20,3 +20,11 @@ double calculatePercentage(String value, String percentage) {
   double calculateTwo = (typeValue - calculateOne);
   return calculateTwo;
 }
+
+String ucFirst(String str) {
+  if (str == null || str.isEmpty) {
+    return "";
+  } else {
+    return str.substring(0, 1).toUpperCase() + str.substring(1);
+  }
+}

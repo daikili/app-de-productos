@@ -33,16 +33,24 @@ class _MyBottomNavigatorBarState extends State<MyBottomNavigatorBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        toolbarHeight: 100,
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: Image.asset(
+          'assets/images/logo.jpg',
+          width: 250,
+          height: 200,
+        ),
+        bottomOpacity: 0,
+        elevation: 0,
+      ),
       body: Stack(
         children: [
-          // Center(
-          //   child: Container(
-          //     child: Image.asset("assets/images/logo.jpeg"),
-          //   ),
-          // ),
-          // Center(
-          //   child: _widgetOptions.elementAt(_selectedIndex),
-          // ),
+          Center(
+            child: _widgetOptions.elementAt(_selectedIndex),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -53,25 +61,25 @@ class _MyBottomNavigatorBarState extends State<MyBottomNavigatorBar> {
               icon: Icon(
                 Icons.home,
               ),
-              label: 'Home',
+              label: 'Inicio',
               backgroundColor: Colors.white),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.widgets_outlined,
               ),
-              label: 'Others',
+              label: 'Catálogo',
               backgroundColor: Colors.white),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.shopping_basket,
               ),
-              label: 'Shopping',
+              label: 'Carrito',
               backgroundColor: Colors.white),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
             ),
-            label: 'Profile',
+            label: 'Perfil',
             backgroundColor: Colors.white,
           ),
         ],
